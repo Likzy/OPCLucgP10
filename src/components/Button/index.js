@@ -60,10 +60,11 @@ Button.propTypes = {
 };
 Button.defaultProps = {
   disabled: false,
-  onClick: () => null,
+  // eslint-disable-next-line no-alert
+  onClick: () => alert("Votre formulaire a bien été envoyé!"),
   type: BUTTON_TYPES.DEFAULT,
   title: "",
-  children: null
-}
+  children: null,
+};
 
 export default Button;
