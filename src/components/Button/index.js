@@ -24,15 +24,17 @@ const Button = ({ title, onClick, type, disabled, children }) => {
       );
     case BUTTON_TYPES.SUBMIT:
       return (
-        <input
-          disabled={disabled}
-          className="Button"
-          type="submit"
-          data-testid="button-test-id"
-          value={children}
-          onClick={onClick}
-          title={title}
-        />
+        <div>
+          <input
+            disabled={disabled}
+            className="Button"
+            type="submit"
+            data-testid="button-test-id"
+            value={children}
+            onClick={onClick}
+            title={title}
+          />
+        </div>
       );
     default:
       return (
@@ -61,7 +63,7 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   // eslint-disable-next-line no-alert
-  onClick: () => alert("Votre formulaire a bien été envoyé!"),
+  onClick: () => {},
   type: BUTTON_TYPES.DEFAULT,
   title: "",
   children: null,
