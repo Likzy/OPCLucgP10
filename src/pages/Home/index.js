@@ -126,13 +126,15 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre derniére prestation</h3>
-          <EventCard
-            imageSrc={sortedEvents[0]?.cover}
-            title={sortedEvents[0]?.title}
-            date={new Date(sortedEvents[0]?.date)}
-            small
-            label={sortedEvents[0]?.type}
-          />
+          {sortedEvents[0] && (
+            <EventCard
+              imageSrc={sortedEvents[0]?.cover}
+              title={sortedEvents[0]?.title}
+              date={new Date(sortedEvents[0]?.date)}
+              small
+              label={sortedEvents[0]?.type}
+            />
+          )}
         </div>
         <div className="col contact">
           <h3>Contactez-nous</h3>

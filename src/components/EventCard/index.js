@@ -10,6 +10,7 @@ const EventCard = ({
   title,
   label,
   small = false,
+
   ...props
 }) => (
   <div
