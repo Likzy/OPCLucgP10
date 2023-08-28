@@ -24,10 +24,6 @@ export const DataProvider = ({ children }) => {
   const getData = useCallback(async () => {
     try {
       setData(await api.loadData());
-      const sorted = [...data.events].sort(
-        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-      );
-      setSortedEvents(sorted);
     } catch (err) {
       setError(err);
     }
@@ -35,6 +31,13 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (!data) {
       getData();
+    }
+    if (data && data.events) {
+      const sorted = [...data.events].sort(
+        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+      );
+      setSortedEvents(sorted);
+      // eslint-disable-next-line no-console
     }
   }, [data, getData]);
 
