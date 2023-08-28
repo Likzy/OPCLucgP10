@@ -38,7 +38,9 @@ export const DataProvider = ({ children }) => {
       setSortedEvents(sorted);
     }
   }, [data, getData]);
-
+  if (sortedEvents.length === 0) {
+    return <div>Loading...</div>; // Or any loading indicator you prefer
+  }
   return (
     <DataContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
