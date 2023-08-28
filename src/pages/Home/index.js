@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -14,17 +14,7 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData();
-  const [sortedEvents, setSortedEvents] = useState([]);
-
-  useEffect(() => {
-    if (data && data.events) {
-      const sorted = [...data.events].sort(
-        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-      );
-      setSortedEvents(sorted);
-    }
-  }, [data]);
+  const { last } = useData();
 
   return (
     <>
@@ -126,15 +116,14 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre derniére prestation</h3>
-          {sortedEvents[0] && (
-            <EventCard
-              imageSrc={sortedEvents[0]?.cover}
-              title={sortedEvents[0]?.title}
-              date={new Date(sortedEvents[0]?.date)}
-              small
-              label={sortedEvents[0]?.type}
-            />
-          )}
+
+          <EventCard
+            imageSrc={last?.cover}
+            title={last?.title}
+            date={new Date(last?.date)}
+            small
+            label={last?.type}
+          />
         </div>
         <div className="col contact">
           <h3>Contactez-nous</h3>
