@@ -24,6 +24,10 @@ export const DataProvider = ({ children }) => {
   const getData = useCallback(async () => {
     try {
       setData(await api.loadData());
+      const sorted = [...data.events].sort(
+        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+      );
+      setSortedEvents(sorted);
     } catch (err) {
       setError(err);
     }
@@ -31,16 +35,9 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (!data) {
       getData();
-    } else if (data && data.events) {
-      const sorted = [...data.events].sort(
-        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-      );
-      setSortedEvents(sorted);
     }
   }, [data, getData]);
-  if (sortedEvents.length === 0) {
-    return <div>Loading...</div>; // Or any loading indicator you prefer
-  }
+
   return (
     <DataContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values

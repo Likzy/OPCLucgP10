@@ -21,7 +21,10 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      setTimeout(2000);
+      setTimeout(() => {
+        // eslint-disable-next-line no-console
+        console.log("Delayed for 1 second.");
+      }, "1000");
       await screen.findByText("Message envoyé !");
     });
   });
